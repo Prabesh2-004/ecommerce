@@ -1,6 +1,6 @@
 import React from "react";
 import { IoMdHome } from "react-icons/io";
-import { FaAngleRight } from "react-icons/fa";
+import { FaAngleRight,FaArrowRight  } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
 import DiscountBanner from "../Components/DiscountBanner";
 import { Link } from "react-router";
@@ -116,6 +116,12 @@ const Product = () => {
                 </div>
               </div>
             ))}
+          </div>
+          <div className="w-full flex justify-center gap-5">
+            <Link className="w-16 h-16 text-xl text-center content-center border-1 border-gray-200 hover:bg-green-500 hover:text-white rounded-full">1</Link>
+            <Link className="w-16 h-16 text-xl text-center content-center border-1 border-gray-200 hover:bg-green-500 hover:text-white rounded-full">2</Link>
+            <Link className="w-16 h-16 text-xl flex justify-center items-center font-medium border-1 border-gray-200 hover:bg-green-500 hover:text-white rounded-full"><FaArrowRight /></Link>
+            
           </div>
         </div>
       </div>
