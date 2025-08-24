@@ -27,6 +27,26 @@ const Product = () => {
       image: "/watch6.png",
       price: "$999",
     },
+    {
+      name: "Rolex Gold",
+      image: "/watch7.png",
+      price: "$1299",
+    },
+    {
+      name: "Rado",
+      image: "/watch8.png",
+      price: "$749",
+    },
+    {
+      name: "Richard Mille",
+      image: "/watch9.png",
+      price: "$1029",
+    },
+    {
+      name: "Hublot",
+      image: "/watch10.png",
+      price: "$949",
+    },
   ];
   return (
     <div className="flex my-10 justify-center">
@@ -73,7 +93,7 @@ const Product = () => {
               </ul>
             </details>
           </div>
-          <div className="flex columns-3 gap-5">
+          <div className="grid grid-cols-4 gap-5">
             {product.map((products, index) => (
               <div
                 key={index}
