@@ -97,7 +97,7 @@ const Product = () => {
             {product.map((products, index) => (
               <div
                 key={index}
-                className="flex flex-1 flex-col items-center gap-3 hover:text-green-500 shadow-xl p-7 rounded-3xl"
+                className="flex flex-1 flex-col items-center gap-3 hover:shadow-2xl hover:text-green-500 shadow-xl p-7 rounded-3xl"
               >
                 <div className="p-5 bg-gray-200 rounded-4xl">
                   <img src={products.image} alt="img" className="h-56 " />
