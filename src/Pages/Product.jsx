@@ -1,57 +1,136 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdHome } from "react-icons/io";
-import { FaAngleRight,FaArrowRight  } from "react-icons/fa";
+import { FaAngleRight, FaArrowRight } from "react-icons/fa";
 import { FaAngleDown } from "react-icons/fa6";
-import DiscountBanner from "../Components/DiscountBanner";
 import { Link } from "react-router";
 
 const Product = () => {
-  const product = [
+  const [product, setProduct] = useState([
     {
       name: "Rolex",
       image: "/watch2.png",
-      price: "$599",
+      price: "599",
     },
     {
       name: "Benyar",
       image: "/watch1.png",
-      price: "$899",
+      price: "899",
     },
     {
       name: "Guess",
       image: "/watch3.png",
-      price: "$399",
+      price: "399",
     },
     {
       name: "Omega",
       image: "/watch6.png",
-      price: "$999",
+      price: "999",
     },
     {
       name: "Rolex Gold",
       image: "/watch7.png",
-      price: "$1299",
+      price: "1299",
     },
     {
       name: "Rado",
       image: "/watch8.png",
-      price: "$749",
+      price: "749",
     },
     {
       name: "Richard Mille",
       image: "/watch9.png",
-      price: "$1029",
+      price: "1029",
     },
     {
       name: "Hublot",
       image: "/watch10.png",
-      price: "$949",
+      price: "949",
     },
-  ];
+  ]);
+
+  const [sortOrder, setSortOrder] = useState("");
+
+  const handleSort = (order) => {
+    setSortOrder(order);
+
+    if (order === "asc") {
+      // A-Z sorting
+      setProduct([...product].sort((a, b) => a.name.localeCompare(b.name)));
+    } else if (order === "desc") {
+      // Z-A sorting
+      setProduct([...product].sort((a, b) => b.name.localeCompare(a.name)));
+    } else if (order === "price-low") {
+      // Price: Low to High
+      setProduct(
+        [...product].sort((a, b) => parseInt(a.price) - parseInt(b.price))
+      );
+    } else if (order === "price-high") {
+      // Price: High to Low
+      setProduct(
+        [...product].sort((a, b) => parseInt(b.price) - parseInt(a.price))
+      );
+    } else {
+      // Reset to default order
+      setProduct([
+        {
+          name: "Rolex",
+          image: "/watch2.png",
+          price: "599",
+        },
+        {
+          name: "Benyar",
+          image: "/watch1.png",
+          price: "899",
+        },
+        {
+          name: "Guess",
+          image: "/watch3.png",
+          price: "399",
+        },
+        {
+          name: "Omega",
+          image: "/watch6.png",
+          price: "999",
+        },
+        {
+          name: "Rolex Gold",
+          image: "/watch7.png",
+          price: "1299",
+        },
+        {
+          name: "Rado",
+          image: "/watch8.png",
+          price: "749",
+        },
+        {
+          name: "Richard Mille",
+          image: "/watch9.png",
+          price: "1029",
+        },
+        {
+          name: "Hublot",
+          image: "/watch10.png",
+          price: "949",
+        },
+      ]);
+    }
+  };
   return (
     <div className="flex my-10 justify-center">
       <div className="max-w-[1300px] flex flex-col gap-10">
-        <DiscountBanner />
+        <div className='flex flex-col items-end h-[500px] w-full bg-[url("./banner.jpeg")] bg-no-repeat bg-cover rounded-4xl text-white p-5'>
+          <div className="flex flex-col gap-5 items-center justify-center h-full w-full">
+            <p className="text-2xl text-green-500">Limited Time Offer</p>
+            <h2 className="text-6xl font-bold">
+              Save Big: Up to <span className="text-green-500">60% Off</span> on
+              All Watches
+            </h2>
+            <p className="text-xl">Act Fast Before They're Gone</p>
+            <Link to="/product" className="p-3 px-5 bg-green-500 rounded-4xl">
+              Shop Now
+            </Link>
+          </div>
+        </div>
         <div>
           <p className="flex items-center gap-3 p-3 border-1 border-gray-200 rounded-4xl font-medium text-xl w-fit">
             <Link to="/">
@@ -65,7 +144,10 @@ const Product = () => {
           <div className="flex justify-between">
             <p>Showing 1 - 4 of {product.length}</p>
             <details>
-              <summary className="flex items-center gap-7 p-3 border-1 border-gray-300 rounded-4xl list-none">
+              <summary
+                onClick={() => handleSort("default")}
+                className="flex items-center gap-7 p-3 border-1 border-gray-300 rounded-4xl list-none"
+              >
                 Default <FaAngleDown />
               </summary>
               <ul className="absolute p-4 rounded-4xl shadow-2xl bg-white">
@@ -78,16 +160,28 @@ const Product = () => {
                 <li className="p-2 hover:bg-gray-100 cursor-pointer rounded-xl">
                   Sort by oldest
                 </li>
-                <li className="p-2 hover:bg-gray-100 cursor-pointer rounded-xl">
+                <li
+                  onClick={() => handleSort("price-low")}
+                  className="p-2 hover:bg-gray-100 cursor-pointer rounded-xl"
+                >
                   Price low to high
                 </li>
-                <li className="p-2 hover:bg-gray-100 cursor-pointer rounded-xl">
+                <li
+                  onClick={() => handleSort("price-high")}
+                  className="p-2 hover:bg-gray-100 cursor-pointer rounded-xl"
+                >
                   Price high to low
                 </li>
-                <li className="p-2 hover:bg-gray-100 cursor-pointer rounded-xl">
+                <li
+                  onClick={() => handleSort("asc")}
+                  className="p-2 hover:bg-gray-100 cursor-pointer rounded-xl"
+                >
                   Alphabetically, A-Z
                 </li>
-                <li className="p-2 hover:bg-gray-100 cursor-pointer rounded-xl">
+                <li
+                  onClick={() => handleSort("desc")}
+                  className="p-2 hover:bg-gray-100 cursor-pointer rounded-xl"
+                >
                   Alphabetically, Z-A
                 </li>
               </ul>
@@ -104,7 +198,7 @@ const Product = () => {
                 </div>
                 <div className="text-center flex flex-col gap-3">
                   <p className="text-2xl font-medium">{products.name}</p>
-                  <p className="text-xl">{products.price}</p>
+                  <p className="text-xl">${products.price}</p>
                 </div>
                 <div className="flex gap-2 flex-col">
                   <button className="p-2 px-5 cursor-pointer bg-green-500 rounded-4xl text-white font-medium">
@@ -118,10 +212,15 @@ const Product = () => {
             ))}
           </div>
           <div className="w-full flex justify-center gap-5">
-            <Link className="w-16 h-16 text-xl text-center content-center border-1 border-gray-200 hover:bg-green-500 hover:text-white rounded-full">1</Link>
-            <Link className="w-16 h-16 text-xl text-center content-center border-1 border-gray-200 hover:bg-green-500 hover:text-white rounded-full">2</Link>
-            <Link className="w-16 h-16 text-xl flex justify-center items-center font-medium border-1 border-gray-200 hover:bg-green-500 hover:text-white rounded-full"><FaArrowRight /></Link>
-            
+            <Link className="w-16 h-16 text-xl text-center content-center border-1 border-gray-200 hover:bg-green-500 hover:text-white rounded-full">
+              1
+            </Link>
+            <Link className="w-16 h-16 text-xl text-center content-center border-1 border-gray-200 hover:bg-green-500 hover:text-white rounded-full">
+              2
+            </Link>
+            <Link className="w-16 h-16 text-xl flex justify-center items-center font-medium border-1 border-gray-200 hover:bg-green-500 hover:text-white rounded-full">
+              <FaArrowRight />
+            </Link>
           </div>
         </div>
       </div>

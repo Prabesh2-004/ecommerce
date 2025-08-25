@@ -4,7 +4,6 @@ import { MdMoreTime } from "react-icons/md";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router";
-import DiscountBanner from "../Components/DiscountBanner";
 
 const Home = () => {
   const product = [
@@ -98,7 +97,10 @@ const Home = () => {
           </p>
           <div className="flex gap-5">
             {product.map((products, index) => (
-              <div key={index} className="flex flex-col items-center gap-5 hover:text-green-500 shadow-xl p-7 rounded-3xl">
+              <div
+                key={index}
+                className="flex flex-col items-center gap-5 hover:text-green-500 shadow-xl p-7 rounded-3xl"
+              >
                 <div className="p-5 bg-gray-200 rounded-4xl">
                   <img src={products.image} alt="img" className="h-64 " />
                 </div>
@@ -107,8 +109,12 @@ const Home = () => {
                   <p className="text-xl">{products.price}</p>
                 </div>
                 <div className="flex gap-2 flex-col">
-                  <button className="p-2 px-5 cursor-pointer bg-green-500 rounded-4xl text-white font-medium">Add To Cart</button>
-                  <button className="p-2 px-5 cursor-pointer bg-green-500 rounded-4xl text-white font-medium">Buy Now</button>
+                  <button className="p-2 px-5 cursor-pointer bg-green-500 rounded-4xl text-white font-medium">
+                    Add To Cart
+                  </button>
+                  <button className="p-2 px-5 cursor-pointer bg-green-500 rounded-4xl text-white font-medium">
+                    Buy Now
+                  </button>
                 </div>
               </div>
             ))}
@@ -124,7 +130,19 @@ const Home = () => {
           </Link>
         </div>
         <div>
-          <DiscountBanner />
+          <div className='flex flex-col items-end h-[500px] w-full bg-[url("./banner.jpeg")] bg-no-repeat bg-cover rounded-4xl text-white p-5'>
+            <div className="flex flex-col gap-5 items-center justify-center h-full w-full">
+              <p className="text-2xl text-green-500">Limited Time Offer</p>
+              <h2 className="text-6xl font-bold">
+                Save Big: Up to <span className="text-green-500">60% Off</span>{" "}
+                on All Watches
+              </h2>
+              <p className="text-xl">Act Fast Before They're Gone</p>
+              <Link to="/product" className="p-3 px-5 bg-green-500 rounded-4xl">
+                Shop Now
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
